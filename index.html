@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barcelona — June 30 to July 4</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root{
+    --night:   #1C2B4A;
+    --terra:   #E8633C;
+    --stone:   #F2EBD9;
+    --trenc:   #2F6F5E;
+    --gold:    #C9A227;
+    --ink:     #3A3530;
+    --paper:   #FBF7EE;
+    --paper2:  #F4EDDC;
+    --line:    rgba(58,53,48,0.14);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- Mosaic / trencadís texture ---------- */
+  .trencadis{
+    height:14px;
+    width:100%;
+    background:
+      linear-gradient(135deg, var(--terra) 25%, transparent 25%) 0 0/24px 24px,
+      linear-gradient(225deg, var(--gold) 25%, transparent 25%) 0 0/24px 24px,
+      linear-gradient(45deg, var(--trenc) 25%, transparent 25%) 0 0/24px 24px,
+      linear-gradient(315deg, var(--night) 25%, transparent 25%) 0 0/24px 24px;
+    background-position: 0 0, 12px 0, 12px -12px, 0 -12px;
+    opacity:0.85;
+  }
+  .trencadis.thin{height:8px;}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--night);
+    color:var(--paper);
+    padding:64px 24px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    bottom:0; left:0; right:0;
+    height:6px;
+    background:repeating-linear-gradient(90deg, var(--terra) 0 18px, var(--gold) 18px 36px, var(--trenc) 36px 54px);
+  }
+  .header-inner{
+    max-width:880px;
+    margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:block;
+    margin-bottom:18px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-optical-sizing:auto;
+    font-size:clamp(40px, 7vw, 76px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    color:var(--paper);
+  }
+  h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--terra);
+  }
+  .header-sub{
+    margin-top:20px;
+    font-size:17px;
+    color:rgba(251,247,238,0.78);
+    max-width:540px;
+  }
+  .header-meta{
+    display:flex;
+    gap:32px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .header-meta div{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:rgba(251,247,238,0.55);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+  }
+  .header-meta strong{
+    display:block;
+    font-family:'Archivo', sans-serif;
+    font-size:18px;
+    font-weight:600;
+    color:var(--paper);
+    text-transform:none;
+    letter-spacing:0;
+    margin-top:4px;
+  }
+
+  /* ---------- Nav / Tabs ---------- */
+  nav{
+    background:var(--paper2);
+    border-bottom:1px solid var(--line);
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:blur(6px);
+  }
+  .nav-inner{
+    max-width:880px;
+    margin:0 auto;
+    display:flex;
+    gap:4px;
+    overflow-x:auto;
+    padding:0 24px;
+    scrollbar-width:none;
+  }
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .tab-btn{
+    flex:none;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.55;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:16px 14px;
+    border-bottom:2px solid transparent;
+    transition:opacity 0.15s, border-color 0.15s, background 0.15s;
+    white-space:nowrap;
+  }
+  .tab-btn:hover, .tab-btn:focus-visible{
+    opacity:1;
+    border-bottom-color:rgba(232,99,60,0.4);
+  }
+  .tab-btn.active{
+    opacity:1;
+    border-bottom-color:var(--terra);
+    background:rgba(232,99,60,0.06);
+  }
+
+  main{
+    max-width:880px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  section{padding:64px 0; display:none;}
+  section.active{display:block;}
+
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:8px;
+  }
+  .section-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    color:var(--terra);
+    letter-spacing:0.05em;
+  }
+  h2{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(28px, 4vw, 38px);
+    color:var(--night);
+  }
+  .section-intro{
+    color:rgba(58,53,48,0.7);
+    font-size:15.5px;
+    max-width:560px;
+    margin-top:10px;
+  }
+
+  /* ---------- Day cards ---------- */
+  .day{
+    margin-top:40px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:var(--paper2);
+    overflow:hidden;
+  }
+  .day-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:16px;
+    padding:26px 28px 20px;
+    flex-wrap:wrap;
+  }
+  .day-name{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--trenc);
+  }
+  .day-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:25px;
+    color:var(--night);
+    margin-top:6px;
+  }
+  .day-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    color:rgba(58,53,48,0.5);
+    text-align:right;
+  }
+  .day-flag{
+    display:inline-block;
+    margin-top:8px;
+    background:var(--terra);
+    color:var(--paper);
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:4px 9px;
+    border-radius:2px;
+  }
+  .day-body{
+    padding:4px 28px 28px;
+  }
+  .stop{
+    display:flex;
+    gap:16px;
+    padding:16px 0;
+    border-top:1px solid var(--line);
+  }
+  .stop:first-child{border-top:none;}
+  .stop-time{
+    flex:none;
+    width:84px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--terra);
+    padding-top:2px;
+  }
+  .stop-content{flex:1;}
+  .stop-name{
+    font-weight:600;
+    font-size:15.5px;
+    color:var(--night);
+  }
+  .stop-note{
+    font-size:14px;
+    color:rgba(58,53,48,0.68);
+    margin-top:3px;
+  }
+  .map-link{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    margin-top:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.03em;
+    color:var(--trenc);
+    text-decoration:none;
+    border-bottom:1px solid rgba(47,111,94,0.35);
+    padding-bottom:1px;
+  }
+  .map-link:hover{color:var(--terra); border-color:var(--terra);}
+  .map-link svg{width:11px; height:11px;}
+
+  /* ---------- Map embed grid ---------- */
+  .map-frame{
+    margin-top:10px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+    background:#fff;
+  }
+  .map-frame iframe{
+    width:100%;
+    height:220px;
+    border:0;
+    display:block;
+  }
+
+  /* ---------- Attractions grid ---------- */
+  .attr-groups{
+    margin-top:36px;
+    display:grid;
+    gap:28px;
+  }
+  .attr-group{
+    border-left:3px solid var(--terra);
+    padding-left:20px;
+  }
+  .attr-group.trenc-border{border-left-color:var(--trenc);}
+  .attr-group.gold-border{border-left-color:var(--gold);}
+  .attr-group.night-border{border-left-color:var(--night);}
+  .attr-group-title{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:rgba(58,53,48,0.55);
+    margin-bottom:12px;
+  }
+  .attr-list{
+    display:grid;
+    gap:10px;
+  }
+  .attr-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .attr-item-name{
+    font-weight:600;
+    font-size:15px;
+    color:var(--night);
+  }
+  .attr-item-note{
+    font-size:13.5px;
+    color:rgba(58,53,48,0.62);
+  }
+  .attr-item a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--terra);
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .attr-item a:hover{text-decoration:underline;}
+
+  /* ---------- Full map section ---------- */
+  .full-map{
+    margin-top:32px;
+    border:1px solid var(--line);
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .full-map iframe{
+    width:100%;
+    height:480px;
+    border:0;
+    display:block;
+  }
+
+  /* ---------- Events ---------- */
+  .events{
+    margin-top:32px;
+    display:grid;
+    gap:14px;
+  }
+  .event{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:18px;
+    padding:18px 0;
+    border-top:1px solid var(--line);
+  }
+  .event:first-child{border-top:none;}
+  .event-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--terra);
+    letter-spacing:0.04em;
+  }
+  .event-title{
+    font-weight:600;
+    color:var(--night);
+    font-size:15.5px;
+  }
+  .event-desc{
+    font-size:14px;
+    color:rgba(58,53,48,0.68);
+    margin-top:4px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--night);
+    color:rgba(251,247,238,0.6);
+    text-align:center;
+    padding:48px 24px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+  }
+  footer strong{color:var(--gold);}
+
+  @media (max-width:560px){
+    header{padding:48px 20px 40px;}
+    .stop{flex-direction:column; gap:4px;}
+    .stop-time{width:auto;}
+    .day-head{flex-direction:column; align-items:flex-start;}
+    .day-date{text-align:left;}
+    .event{grid-template-columns:1fr;}
+  }
+
+  :focus-visible{outline:2px solid var(--terra); outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <span class="eyebrow">Travel Itinerary · Personal Journal</span>
+    <h1>Barcelona<br><em>four days, in mosaic.</em></h1>
+    <p class="header-sub">A day-by-day plan built around Gaudí's centenary, a Tour de France send-off, and whatever's left of the World Cup buzz — with maps for every stop.</p>
+    <div class="header-meta">
+      <div>Arrive<strong>Tue, Jun 30 — 8:30 AM</strong></div>
+      <div>Depart<strong>Sat, Jul 4 — AM</strong></div>
+      <div>Travelers<strong>2</strong></div>
+      <div>Staying at<strong>Carrer Valldonzella, 46</strong></div>
+    </div>
+  </div>
+</header>
+
+<div class="trencadis"></div>
+
+<nav>
+  <div class="nav-inner">
+    <button class="tab-btn active" data-target="overview">Overview</button>
+    <button class="tab-btn" data-target="stay">Staying</button>
+    <button class="tab-btn" data-target="tuesday">Tue</button>
+    <button class="tab-btn" data-target="wednesday">Wed</button>
+    <button class="tab-btn" data-target="thursday">Thu</button>
+    <button class="tab-btn" data-target="friday">Fri</button>
+    <button class="tab-btn" data-target="saturday">Sat</button>
+    <button class="tab-btn" data-target="attractions">Attractions</button>
+    <button class="tab-btn" data-target="shopping">Shopping</button>
+    <button class="tab-btn" data-target="cafes">Cafés</button>
+    <button class="tab-btn" data-target="map">Full Map</button>
+    <button class="tab-btn" data-target="events">Events</button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- WHERE YOU'RE STAYING -->
+  <section id="stay">
+    <div class="section-head">
+      <span class="section-num">00a</span>
+      <h2>Where you're staying</h2>
+    </div>
+    <p class="section-intro">Carrer Valldonzella 46 — El Raval, right at the edge of the old city. Genuinely excellent location: a few minutes from Plaça de Catalunya, the Gothic Quarter, and Las Ramblas, with the Universitat metro stop practically on the doorstep.</p>
+
+    <div class="day" style="margin-top:32px;">
+      <div class="day-head">
+        <div>
+          <div class="day-name">The Address</div>
+          <div class="day-title">Carrer Valldonzella, 46 · 08001 Barcelona</div>
+        </div>
+        <div class="day-date">El Raval</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">On foot</div>
+          <div class="stop-content">
+            <div class="stop-name">Nearest landmarks</div>
+            <div class="stop-note">Universitat metro (L1, L2) is a 5–6 min walk. Plaça de Catalunya is about a 6 min walk. The Gothic Quarter and Las Ramblas are both 10–12 min on foot.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Carrer+de+Valldonzella+46+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="margin-top:48px; font-size:26px;">Getting there — Tuesday, 8:30 AM landing</h2>
+    <p class="section-intro">Three ways to make the trip, fastest to cheapest. Given an early-morning arrival after an overnight flight, the taxi is the easiest call — but here's the full picture.</p>
+
+    <div class="day" style="margin-top:28px;">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Option 1 · Recommended</div>
+          <div class="day-title">Taxi or Uber/Cabify, direct</div>
+        </div>
+        <div class="day-date">~20–25 min</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">€30–40</div>
+          <div class="stop-content">
+            <div class="stop-name">Official taxi rank, Terminal 1 or 2</div>
+            <div class="stop-note">After landing at 8:30am, you'll likely clear customs and reach the taxi rank by ~9–9:15am. A direct taxi to Carrer Valldonzella runs about 20–25 minutes door to door — no transfers, no stairs with luggage. Tell the driver "Carrer de Valldonzella, prop de Plaça Universitat" if needed. Note: this street is narrow and partly pedestrian, so the driver may drop you at the nearest accessible corner, a short walk from the door.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day" style="margin-top:24px;">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Option 2</div>
+          <div class="day-title">Aerobús to Plaça de Catalunya, then walk</div>
+        </div>
+        <div class="day-date">~40 min total</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">~€6</div>
+          <div class="stop-content">
+            <div class="stop-name">Aerobús (A1 from T1, A2 from T2)</div>
+            <div class="stop-note">Runs every 5–10 minutes, about a 35-minute ride to Plaça de Catalunya. From there it's a flat, easy 6-minute walk down Carrer de Pelai toward Universitat to reach Valldonzella — totally manageable with luggage since it's all on wide, level sidewalks.</div>
+            <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=Carrer+de+Valldonzella+46+Barcelona&origin=Pla%C3%A7a+de+Catalunya+Barcelona&travelmode=walking" target="_blank" rel="noopener">Walking route <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="day" style="margin-top:24px;">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Option 3 · Cheapest</div>
+          <div class="day-title">Metro via L9 Sud → L1 (change at Torrassa)</div>
+        </div>
+        <div class="day-date">~45–50 min total</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">€5.90</div>
+          <div class="stop-content">
+            <div class="stop-name">L9 Sud from the airport, change at Torrassa onto L1</div>
+            <div class="stop-note">Take L9 Sud from either terminal to Torrassa, change onto L1 (red line) toward Fondo, and get off at Universitat — a 5-minute walk from there. Workable with light luggage, but two changes and several flights of stairs/escalators make this the least appealing option right after an overnight flight.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-intro" style="margin-top:24px;"><strong>Bottom line for an 8:30am arrival:</strong> grab a taxi. You'll likely be jet-lagged, possibly carrying bags you don't want to haul through metro transfers, and the price difference (€30–40 vs. €6–13) is small relative to the comfort of a direct ride straight to the door.</p>
+  </section>
+
+  <section id="overview" class="active">
+    <div class="section-head">
+      <span class="section-num">00</span>
+      <h2>The shape of the trip</h2>
+    </div>
+    <p class="section-intro">Four full days. Mornings belong to Gaudí and the old city; evenings belong to whatever's lit up — a fountain show, a fan zone, a team presentation. Saturday belongs to the airport, well before 850,000 cycling fans take over the streets.</p>
+
+    <div class="attr-groups" style="margin-top:32px;">
+      <div class="attr-group">
+        <div class="attr-group-title">Tue — Landing softly</div>
+        <p class="section-intro" style="margin-top:0;">Gothic Quarter wander, jet-lag nap, optional Portal de l'Àngel/vintage browse, dinner at Parking Pizza.</p>
+      </div>
+      <div class="attr-group trenc-border">
+        <div class="attr-group-title">Wed — Gaudí day</div>
+        <p class="section-intro" style="margin-top:0;">Sagrada Família at opening, Park Güell at 11am (booked), Casa Batlló / Casa Milà + Passeig de Gràcia shopping, dinner in Gràcia.</p>
+      </div>
+      <div class="attr-group gold-border">
+        <div class="attr-group-title">Thu — Beach + Tour de France</div>
+        <p class="section-intro" style="margin-top:0;">Slower morning, Barceloneta in the afternoon, team presentation at Plaça de Catalunya.</p>
+      </div>
+      <div class="attr-group night-border">
+        <div class="attr-group-title">Fri — Day trip + last night</div>
+        <p class="section-intro" style="margin-top:0;">Montserrat or Sitges, then a final tapas crawl wherever you fell in love with the city.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TUESDAY -->
+  <section id="tuesday">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2>Tuesday — Arrival</h2>
+    </div>
+    <p class="section-intro">Light day on purpose. You're jet-lagged and the city isn't going anywhere.</p>
+
+    <div class="day">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Day One</div>
+          <div class="day-title">Gothic Quarter & easing in</div>
+        </div>
+        <div class="day-date">Jun 30</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">8:30 AM</div>
+          <div class="stop-content">
+            <div class="stop-name">Land at BCN</div>
+            <div class="stop-note">Take a taxi direct to Carrer Valldonzella, 46 (~20–25 min, €30–40) — see the full transfer options above. Should put you at the door by ~9:30–10am.</div>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Morning</div>
+          <div class="stop-content">
+            <div class="stop-name">Drop bags</div>
+            <div class="stop-note">Standard check-in is usually afternoon (often 2–4pm) — confirm early bag drop with your host so you're not carrying luggage around the Gothic Quarter all morning.</div>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Midday</div>
+          <div class="stop-content">
+            <div class="stop-name">Barcelona Cathedral & the Gothic Quarter</div>
+            <div class="stop-note">Wander the medieval streets — no fixed plan needed here, just get lost a little.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Barcelona+Cathedral" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Lunch</div>
+          <div class="stop-content">
+            <div class="stop-name">Mercat de la Boqueria</div>
+            <div class="stop-note">Fresh juice, jamón stalls. Closed Sundays, otherwise go before 11am if you want it quiet — midday is fine for lunch energy.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Mercat+de+la+Boqueria" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Afternoon</div>
+          <div class="stop-content">
+            <div class="stop-name">Rest / nap</div>
+            <div class="stop-note">Fight the jet lag now so Wednesday's early Sagrada Família slot doesn't hurt.</div>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Late Afternoon</div>
+          <div class="stop-content">
+            <div class="stop-name">Optional: Portal de l'Àngel or El Raval vintage</div>
+            <div class="stop-note">Both a 5-minute walk from Valldonzella — Portal de l'Àngel for Zara/Mango/Bershka, or the El Raval vintage strip (Holala! Plaza, Flamingos) for something more curated. Easy way to stretch your legs after the nap.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Portal+de+l%27Angel+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Evening</div>
+          <div class="stop-content">
+            <div class="stop-name">Dinner: Parking Pizza</div>
+            <div class="stop-note">Passeig de Sant Joan, 56 — the original location, in a converted garage with communal tables. No reservations, so expect a short wait at peak times. Lively/loud, casual, good first-night energy. Close to Arc de Triomf if you want to swing by after.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Parking+Pizza+Passeig+de+Sant+Joan+56+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WEDNESDAY -->
+  <section id="wednesday">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2>Wednesday — Gaudí day</h2>
+    </div>
+    <p class="section-intro">2026 marks 100 years since Gaudí's death — Sagrada Família's final tower just crowned the skyline for the first time in a century. Park Güell's booked for 11am, so the morning is sequenced around that.</p>
+
+    <div class="day">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Day Two</div>
+          <div class="day-title">Sagrada Família, Park Güell, Casa Batlló</div>
+          <span class="day-flag">Park Güell booked · 11:00 AM</span>
+        </div>
+        <div class="day-date">Jul 1</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">~8:00 AM</div>
+          <div class="stop-content">
+            <div class="stop-name">Sagrada Família</div>
+            <div class="stop-note">Book the timed ticket weeks ahead if you haven't already — go first thing so you have a clean buffer before Park Güell. Quiet hour runs 9–10am, earphones required for audio.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">11:00 AM</div>
+          <div class="stop-content">
+            <div class="stop-name">Park Güell <strong>(booked)</strong></div>
+            <div class="stop-note">Sagrada Família to Park Güell is roughly 20–30 min by metro (1–2 changes) — leave Sagrada Família by ~10:15am to be safe. It'll be warmer and busier at 11am than an 8:30am slot would've been, so pace yourself and bring water.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Lunch</div>
+          <div class="stop-content">
+            <div class="stop-name">Lunch near Gràcia or Eixample</div>
+            <div class="stop-note">Park Güell sits right above Gràcia — easy to drop down into the neighborhood for a relaxed lunch after.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Gracia+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Afternoon</div>
+          <div class="stop-content">
+            <div class="stop-name">Casa Batlló & Casa Milà (La Pedrera)</div>
+            <div class="stop-note">Both on Passeig de Gràcia, walking distance from each other and from Gràcia itself. Casa Milà's rooftop chimneys are the quieter alternative if Batlló feels too crowded.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Casa+Batllo+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Afternoon</div>
+          <div class="stop-content">
+            <div class="stop-name">Shop Passeig de Gràcia</div>
+            <div class="stop-note">You're already standing on it — Loewe, Cartier, Hermès, Louis Vuitton, Chanel, Gucci, plus Zara's flagship. Worth tacking on 30–60 min while you're there rather than making a separate trip.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Passeig+de+Gracia+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Evening</div>
+          <div class="stop-content">
+            <div class="stop-name">Dinner in Gràcia</div>
+            <div class="stop-note">It'll be a long day on your feet by now — a relaxed, low-key dinner here makes sense before tomorrow's Tour de France evening.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THURSDAY -->
+  <section id="thursday">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2>Thursday — Beach & the Tour</h2>
+    </div>
+    <p class="section-intro">With Park Güell now done Wednesday, Thursday opens up into a slower, beach-first day before the evening's main event.</p>
+
+    <div class="day">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Day Three</div>
+          <div class="day-title">Barceloneta, Plaça de Catalunya</div>
+        </div>
+        <div class="day-date">Jul 2</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">Morning</div>
+          <div class="stop-content">
+            <div class="stop-name">Sleep in, slow start</div>
+            <div class="stop-note">You've earned it after yesterday's Sagrada Família → Park Güell → Casa Batlló stretch. Optional: Picasso Museum or a wander through Born if you want something low-key before the beach.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Picasso+Museum+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Afternoon</div>
+          <div class="stop-content">
+            <div class="stop-name">Barceloneta Beach</div>
+            <div class="stop-note">Sea temps sit around 74°F — a real swim, not just a wade. Keep an eye on belongings here.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Barceloneta+Beach" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">4:00–6:00 PM</div>
+          <div class="stop-content">
+            <div class="stop-name">Tour de France team presentation</div>
+            <div class="stop-note">Plaça de Catalunya. Free, viewing area fills from 4pm for a 6pm CEST start. Atmosphere starts building well before the race itself.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Placa+de+Catalunya+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Evening</div>
+          <div class="stop-content">
+            <div class="stop-name">Dinner nearby, then optional Magic Fountain</div>
+            <div class="stop-note">Plaça de Catalunya is central — easy walk into Gothic Quarter or El Born after. If you've still got energy, the Magic Fountain (Wed–Sun, 9:30 & 10pm) is a short hop down to Montjuïc.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Magic+Fountain+of+Montjuic" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRIDAY -->
+  <section id="friday">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2>Friday — Day trip & last night</h2>
+    </div>
+    <p class="section-intro">One day, one trip out of the city. Pick mountains or coast — then come back for a proper send-off dinner.</p>
+
+    <div class="day">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Day Four</div>
+          <div class="day-title">Montserrat (or Sitges) + farewell dinner</div>
+        </div>
+        <div class="day-date">Jul 3</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">All day</div>
+          <div class="stop-content">
+            <div class="stop-name">Montserrat</div>
+            <div class="stop-note">~1 hour by train + cable car or rack railway. Dramatic mountain monastery, half-day is enough — leaves room for a relaxed evening back in town.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Montserrat+Monastery" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Alt. option</div>
+          <div class="stop-content">
+            <div class="stop-name">Sitges</div>
+            <div class="stop-note">~40 min by train. Laid-back beach town if you'd rather stay coastal than go up a mountain.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Sitges+Spain" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Evening</div>
+          <div class="stop-content">
+            <div class="stop-name">Farewell tapas crawl</div>
+            <div class="stop-note">El Born or Gràcia — whichever neighborhood won you over. The city will already be buzzing with Tour de France set-up: banners, barricades, fan zones going up around the route.</div>
+          </div>
+        </div>
+        <div class="stop">
+          <div class="stop-time">Optional</div>
+          <div class="stop-content">
+            <div class="stop-name">Montjuïc Castle sunset + Magic Fountain</div>
+            <div class="stop-note">If you skipped this combo Wednesday, tonight's your last shot — fountain shows run through Sunday.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Montjuic+Castle+Barcelona" target="_blank" rel="noopener">View on map <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SATURDAY -->
+  <section id="saturday">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2>Saturday — Departure</h2>
+    </div>
+
+    <div class="day">
+      <div class="day-head">
+        <div>
+          <div class="day-name">Day Five</div>
+          <div class="day-title">Fly home — before the city closes its streets</div>
+          <span class="day-flag">650K–850K expected</span>
+        </div>
+        <div class="day-date">Jul 4</div>
+      </div>
+      <div class="day-body">
+        <div class="stop">
+          <div class="stop-time">Morning</div>
+          <div class="stop-content">
+            <div class="stop-name">Flight out of BCN</div>
+            <div class="stop-note">Today is the Tour de France Grand Départ. Restrictions begin gradually from noon, circuit fully closed by 1:30pm — your morning flight should clear it, but build in extra buffer for the transfer. The city will already be prepping before you leave.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ATTRACTIONS -->
+  <section id="attractions">
+    <div class="section-head">
+      <span class="section-num">06</span>
+      <h2>The full attractions list</h2>
+    </div>
+    <p class="section-intro">Everything from the itinerary, grouped the way you'd actually visit them.</p>
+
+    <div class="attr-groups">
+      <div class="attr-group">
+        <div class="attr-group-title">Gaudí Trail — book ahead for all</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Sagrada Família</div><div class="attr-item-note">Centenary tower just completed — extra significance this year</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Sagrada+Familia+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Park Güell</div><div class="attr-item-note">Go early, timed ticket required</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Park+Guell+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Casa Batlló</div><div class="attr-item-note">Dragon-scale roof, flamboyant facade</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Casa+Batllo+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Casa Milà (La Pedrera)</div><div class="attr-item-note">Quieter alternative to Batlló, rooftop chimneys</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Casa+Mila+La+Pedrera+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group trenc-border">
+        <div class="attr-group-title">Old City Walk</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Barcelona Cathedral</div><div class="attr-item-note">Roof access for views, dress code applies</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Barcelona+Cathedral" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Mercat de la Boqueria</div><div class="attr-item-note">Closed Sundays, best before 11am</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Mercat+de+la+Boqueria" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Picasso Museum</div><div class="attr-item-note">Focuses on his early, formative years</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Picasso+Museum+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Arc de Triomf</div><div class="attr-item-note">Quick stop, leads into Ciutadella Park</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Arc+de+Triomf+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group gold-border">
+        <div class="attr-group-title">Montjuïc Evening Combo</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Montjuïc Castle</div><div class="attr-item-note">Cable car up, free entry Sunday afternoons</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Montjuic+Castle+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Magic Fountain</div><div class="attr-item-note">Free, Wed–Sun, 9:30 & 10pm in summer</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Magic+Fountain+of+Montjuic" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group night-border">
+        <div class="attr-group-title">Beach, Viewpoints & Neighborhoods</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Barceloneta Beach</div><div class="attr-item-note">Watch belongings — petty theft happens here</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Barceloneta+Beach" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Bunkers del Carmel</div><div class="attr-item-note">Free sunset viewpoint, local favorite</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Bunkers+del+Carmel" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Gràcia</div><div class="attr-item-note">Bohemian, local-feeling, good for evenings</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Gracia+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Camp Nou</div><div class="attr-item-note">Out of the way — only if you want a dedicated half-day</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Camp+Nou+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL MAP -->
+  <!-- SHOPPING -->
+  <section id="shopping">
+    <div class="section-head">
+      <span class="section-num">06a</span>
+      <h2>Where to shop</h2>
+    </div>
+    <p class="section-intro">Luxury, Spanish high street, and vintage — all clustered close enough together that you can do most of it in one or two passes.</p>
+
+    <div class="attr-groups">
+      <div class="attr-group">
+        <div class="attr-group-title">Luxury — Passeig de Gràcia</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Passeig de Gràcia</div><div class="attr-item-note">Cartier, Hermès, Louis Vuitton, Chanel, Dior, Gucci, Tiffany & Co. — 20 min to walk end to end. Watch for pickpockets.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Passeig+de+Gracia+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Rambla de Catalunya</div><div class="attr-item-note">One block over, same neighborhood, more relaxed and tree-lined</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Rambla+de+Catalunya+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group trenc-border">
+        <div class="attr-group-title">Spanish Brands</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Portal de l'Àngel</div><div class="attr-item-note">Zara, Mango, Bershka — pedestrian street, 5 min from Valldonzella, often cheaper than abroad</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Portal+de+l%27Angel+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Loewe</div><div class="attr-item-note">Spanish luxury house, flagship on Passeig de Gràcia alongside Massimo Dutti</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Loewe+Passeig+de+Gracia+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group gold-border">
+        <div class="attr-group-title">Vintage & Independent</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">El Raval vintage strip</div><div class="attr-item-note">Holala! Plaza, Flamingos Vintage Kilo — curated 80s/90s, denim, leather. Right by your Airbnb.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Holala+Plaza+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">El Born & Gothic Quarter boutiques</div><div class="attr-item-note">Independent concept stores, artisan leather goods, jewelry, ceramics</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=El+Born+Barcelona+boutiques" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-intro" style="margin-top:24px;"><strong>Practical note:</strong> most shops run 10am–8:30/9pm (an hour later, to 10pm, in summer). Many independent shops close Sundays, though tourist-zone stores and Passeig de Gràcia stay open daily from mid-May to mid-September — covers your whole trip.</p>
+  </section>
+
+  <!-- CAFÉS -->
+  <section id="cafes">
+    <div class="section-head">
+      <span class="section-num">06b</span>
+      <h2>Cafés near the Airbnb</h2>
+    </div>
+    <p class="section-intro">El Raval has a genuinely strong coffee scene, and most of these are a five-to-ten-minute walk from Carrer Valldonzella, 46.</p>
+
+    <div class="attr-groups">
+      <div class="attr-group">
+        <div class="attr-group-title">Steps From Your Door</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Lukumás</div><div class="attr-item-note">Carrer de Valldonzella, 36 — a few doors down. Thessaloniki-style doughnut shop; black coffee + doughnut is the move.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Lukumas+Carrer+de+Valldonzella+36+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group trenc-border">
+        <div class="attr-group-title">Worth the Short Walk</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Bar Central</div><div class="attr-item-note">Carrer d'Elisabets, 6 — courtyard of a former priest's home, plant-filled, feels like an oasis.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Bar+Central+Carrer+d%27Elisabets+6+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Dalston Coffee</div><div class="attr-item-note">Cozy, compact, smooth and creamy espresso, loyal local following.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Dalston+Coffee+El+Raval+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Departure Coffee Co.</div><div class="attr-item-note">Former carpentry space, laid-back, good for working or lingering.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Departure+Coffee+Co+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+          <div class="attr-item">
+            <div><div class="attr-item-name">Nømad Every Day</div><div class="attr-item-note">Airy, take-away-focused, great on a hot day — try the nitro affogato.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Nomad+Every+Day+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group gold-border">
+        <div class="attr-group-title">Old-School Barcelona</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Granja M Viader</div><div class="attr-item-note">Carrer d'en Xuclà, 4 — open since 1870, steps from La Rambla. Churros con chocolate or crema catalana over specialty coffee.</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Granja+M+Viader+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="attr-group night-border">
+        <div class="attr-group-title">For Working / Sitting a While</div>
+        <div class="attr-list">
+          <div class="attr-item">
+            <div><div class="attr-item-name">Federal Café (Raval location)</div><div class="attr-item-note">Good wifi, basement seating, excellent flautas de jamón (ham sandwiches).</div></div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Federal+Cafe+Raval+Barcelona" target="_blank" rel="noopener">MAP →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="section-intro" style="margin-top:24px;"><strong>Easy pick:</strong> Lukumás for a quick first or last morning since it's basically outside your door. Bar Central if you want one slower, sit-down coffee somewhere with real atmosphere.</p>
+  </section>
+
+  <section id="map">
+    <div class="section-head">
+      <span class="section-num">07</span>
+      <h2>Everything, on one map</h2>
+    </div>
+    <p class="section-intro">All the key stops at a glance. Tap to open the interactive version in Google Maps.</p>
+    <div class="full-map">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=2.1280%2C41.3580%2C2.1850%2C41.4200&layer=mapnik"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Barcelona overview map — old city to Park Güell">
+      </iframe>
+    </div>
+    <p class="section-intro" style="margin-top:14px;">This shows the old city up through Park Güell. Use the <strong>"View on map →"</strong> link on every stop above for turn-by-turn Google Maps directions to that exact spot, or open the combined route below.</p>
+    <p class="section-intro" style="margin-top:10px;">
+      <a class="map-link" href="https://www.google.com/maps/dir/Sagrada+Familia+Barcelona/Park+Guell+Barcelona/Barcelona+Cathedral/Barceloneta+Beach/Montjuic+Castle+Barcelona" target="_blank" rel="noopener">Open full multi-stop route in Google Maps <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+    </p>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="section-head">
+      <span class="section-num">08</span>
+      <h2>What's overlapping your week</h2>
+    </div>
+    <p class="section-intro">You picked a busy week to visit — for once, that's a good thing.</p>
+
+    <div class="events">
+      <div class="event">
+        <div class="event-date">JUL 2</div>
+        <div>
+          <div class="event-title">Spain vs. Round of 32 opponent — World Cup</div>
+          <div class="event-desc">Plays in the US (Los Angeles), so it's the middle of the night in Barcelona — expect packed late-night bars rather than a public viewing in the streets. Lamine Yamal is on the squad for his first World Cup.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">JUL 2</div>
+        <div>
+          <div class="event-title">Tour de France team presentation</div>
+          <div class="event-desc">Plaça de Catalunya, free, viewing area fills from 4pm for a 6pm CEST start.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">JUN 26 – JUL 18</div>
+        <div>
+          <div class="event-title">Barcelona Pride</div>
+          <div class="event-desc">Runs the entire length of your trip — festive atmosphere, especially around Eixample.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">2026</div>
+        <div>
+          <div class="event-title">Gaudí Centenary</div>
+          <div class="event-desc">100 years since Gaudí's death. Sagrada Família's Tower of Jesus Christ — 172 meters, a century in the making — has just been completed.</div>
+        </div>
+      </div>
+      <div class="event">
+        <div class="event-date">JUL 4</div>
+        <div>
+          <div class="event-title">Tour de France Grand Départ</div>
+          <div class="event-desc">650,000–850,000 attendees expected. Circuit closes by 1:30pm — happening as you fly out, so build buffer time into your airport transfer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="trencadis thin"></div>
+
+<footer>
+  Barcelona · Jun 30 – Jul 4, 2026 · Built for the trip, not the algorithm. <strong>Bon viatge.</strong>
+</footer>
+
+<script>
+(function(){
+  var buttons = document.querySelectorAll('.tab-btn');
+  var sections = document.querySelectorAll('main > section');
+
+  function activate(target){
+    sections.forEach(function(s){
+      s.classList.toggle('active', s.id === target);
+    });
+    buttons.forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-target') === target);
+    });
+    window.scrollTo({top: 0, behavior: 'instant' in window ? 'instant' : 'auto'});
+    if(history.replaceState){ history.replaceState(null, '', '#' + target); }
+  }
+
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      activate(btn.getAttribute('data-target'));
+    });
+  });
+
+  var initial = (location.hash || '').replace('#', '');
+  var validIds = Array.prototype.map.call(sections, function(s){ return s.id; });
+  if(initial && validIds.indexOf(initial) !== -1){
+    activate(initial);
+  }
+})();
+</script>
+
+</body>
+</html>

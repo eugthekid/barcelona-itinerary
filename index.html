@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Barcelona — June 30 to July 4</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@300..700&display=swap');
 
   :root{
     --night:   #1C2B4A;
@@ -25,7 +25,8 @@
   body{
     background:var(--paper);
     color:var(--ink);
-    font-family:'Archivo', sans-serif;
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
     line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
@@ -64,7 +65,7 @@
     margin:0 auto;
   }
   .eyebrow{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12.5px;
     letter-spacing:0.18em;
     text-transform:uppercase;
@@ -99,7 +100,7 @@
     flex-wrap:wrap;
   }
   .header-meta div{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12.5px;
     color:rgba(251,247,238,0.55);
     text-transform:uppercase;
@@ -107,7 +108,7 @@
   }
   .header-meta strong{
     display:block;
-    font-family:'Archivo', sans-serif;
+    font-family:'Work Sans', sans-serif;
     font-size:18px;
     font-weight:600;
     color:var(--paper);
@@ -137,7 +138,7 @@
   .nav-inner::-webkit-scrollbar{display:none;}
   .tab-btn{
     flex:none;
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12px;
     letter-spacing:0.05em;
     text-transform:uppercase;
@@ -198,7 +199,16 @@
   }
 
   section{padding:64px 0; display:none;}
-  section.active{display:block;}
+  section.active{display:block; animation:pageFade 0.4s ease both;}
+
+  @keyframes pageFade{
+    from{opacity:0; transform:translateY(8px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    section.active{animation:none;}
+  }
 
   .section-head{
     display:flex;
@@ -207,7 +217,7 @@
     margin-bottom:8px;
   }
   .section-num{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:13px;
     color:var(--terra);
     letter-spacing:0.05em;
@@ -242,7 +252,7 @@
     flex-wrap:wrap;
   }
   .day-name{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12px;
     letter-spacing:0.12em;
     text-transform:uppercase;
@@ -256,7 +266,7 @@
     margin-top:6px;
   }
   .day-date{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12.5px;
     color:rgba(58,53,48,0.5);
     text-align:right;
@@ -266,7 +276,7 @@
     margin-top:8px;
     background:var(--terra);
     color:var(--paper);
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:11px;
     letter-spacing:0.06em;
     text-transform:uppercase;
@@ -286,7 +296,7 @@
   .stop-time{
     flex:none;
     width:84px;
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12px;
     color:var(--terra);
     padding-top:2px;
@@ -307,7 +317,7 @@
     align-items:center;
     gap:5px;
     margin-top:8px;
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:11.5px;
     letter-spacing:0.03em;
     color:var(--trenc);
@@ -347,7 +357,7 @@
   .attr-group.gold-border{border-left-color:var(--gold);}
   .attr-group.night-border{border-left-color:var(--night);}
   .attr-group-title{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12px;
     letter-spacing:0.1em;
     text-transform:uppercase;
@@ -375,7 +385,7 @@
     color:rgba(58,53,48,0.62);
   }
   .attr-item a{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:11px;
     color:var(--terra);
     text-decoration:none;
@@ -412,7 +422,7 @@
   }
   .event:first-child{border-top:none;}
   .event-date{
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12px;
     color:var(--terra);
     letter-spacing:0.04em;
@@ -434,7 +444,7 @@
     color:rgba(251,247,238,0.6);
     text-align:center;
     padding:48px 24px;
-    font-family:'JetBrains Mono', monospace;
+    font-family:'Work Sans', sans-serif; font-weight:350;
     font-size:12px;
     letter-spacing:0.05em;
   }
@@ -1258,15 +1268,39 @@
 (function(){
   var buttons = document.querySelectorAll('.tab-btn');
   var sections = document.querySelectorAll('main > section');
+  var nav = document.querySelector('nav');
+
+  // The nav's natural (unstuck) offset from the top of the document. Reading
+  // nav.offsetTop directly is unreliable: while the sticky nav is stuck it
+  // reports its current stuck position, not where it sits in normal flow.
+  // Momentarily forcing static layout gives the true home position at any scroll.
+  function navHome(){
+    if(!nav) return 0;
+    var prev = nav.style.position;
+    nav.style.position = 'static';
+    var top = nav.offsetTop;
+    nav.style.position = prev;
+    return top;
+  }
 
   function activate(target){
+    var home = navHome();
+    var pullUp = window.scrollY > home;
+
     sections.forEach(function(s){
       s.classList.toggle('active', s.id === target);
     });
     buttons.forEach(function(b){
       b.classList.toggle('active', b.getAttribute('data-target') === target);
     });
-    window.scrollTo(0, 0);
+
+    // Pull up so the nav sits flush at the top, but never push down when the
+    // header is still in view. Defer to next frame so layout has settled.
+    if(pullUp){
+      requestAnimationFrame(function(){
+        window.scrollTo({top: home, behavior: 'smooth'});
+      });
+    }
     if(history.replaceState){ history.replaceState(null, '', '#' + target); }
   }
 
